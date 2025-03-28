@@ -48,11 +48,6 @@ public class MainMenu : MonoBehaviour
         DisplayMenu(Menu_Options);
     }
 
-    public void onLeaderBoardButton()
-    {
-        DisplayMenu(Menu_LeaderBoard);
-    }
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
