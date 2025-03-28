@@ -1,4 +1,6 @@
+using System.Xml.Serialization;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
@@ -6,6 +8,12 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject Menu_Main;
     [SerializeField] GameObject Menu_Level_Select;
     [SerializeField] GameObject Menu_Options;
+
+    public AudioManager am;
+    /*void Awake()
+    {
+        GameObject am = GameObject.Find("AudioManager");
+    }*/
 
     public void DisplayMenu(GameObject menuToShow)
     {
@@ -16,17 +24,20 @@ public class MainMenu : MonoBehaviour
             menu.SetActive(menu == menuToShow);
         }
     }
-
+    
+  
     public void OnPlayButton () 
     {
         //SceneManager.LoadScene("LevelSelect");
         //DisplayLevelSelect();
         DisplayMenu(Menu_Level_Select);
+        am.onMouseClick();
     }
     public void OnOptionsButton ()
     {
         //DisplayOptions();
         DisplayMenu(Menu_Options);
+        am.onMouseClick();
     }
 
     void Update()
@@ -34,6 +45,7 @@ public class MainMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             OnBack();
+            am.onMouseClick();
         }
     }
     public void OnLevel_1()
@@ -52,6 +64,7 @@ public class MainMenu : MonoBehaviour
     {
         //DisplayMainMenu();
         DisplayMenu(Menu_Main);
+        am.onMouseClick();
     }
     public void setQuality(int qualityIndex)
     {
@@ -59,7 +72,9 @@ public class MainMenu : MonoBehaviour
     }
     public void OnQuitButton ()
     {
+        am.onMouseClick();
         Application.Quit();
+
     }
 }
 

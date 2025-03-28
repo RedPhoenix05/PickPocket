@@ -19,6 +19,29 @@ public class AudioManager : MonoBehaviour
         musicSource.clip = background;
         musicSource.loop = true;
         musicSource.Play();
+
+        // Load music and SFX volume if available
+        if (PlayerPrefs.HasKey("musicVolume"))
+        {
+            SetMusicVolume(PlayerPrefs.GetFloat("musicVolume"));
+        }
+
+        if (PlayerPrefs.HasKey("sfxVolume"))
+        {
+            SetSFXVolume(PlayerPrefs.GetFloat("sfxVolume"));
+        }
+    }
+
+    public void SetMusicVolume(float volume)
+    {
+        musicSource.volume = volume;
+        Debug.Log("Music Volume: " + volume);
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        SFXSource.volume = volume;
+        Debug.Log("SFX Volume: " + volume);
     }
 
     public void onMouseClick()
