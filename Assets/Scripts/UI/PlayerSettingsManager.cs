@@ -7,13 +7,22 @@ using System;
 public class PlayerSettingsManager : MonoBehaviour
 {
     [SerializeField] Slider volumeSlider;
+    [SerializeField] Slider sfxVolumeSlider;
     [SerializeField] Toggle fullscreenToggle;
+
+    private AudioManager audioManager;
 
     private void Start()
     {
+        // Find the AudioManager object
+        audioManager = FindObjectOfType<AudioManager>();
+
         // Load saved settings
         if (PlayerPrefs.HasKey("musicVolume")) { LoadVolume(); }
         else { ChangeVolume(); }
+
+        if (PlayerPrefs.HasKey("sfxVolume")) { LoadSFXVolume(); }
+        else { ChangeSFXVolume(); }
 
         if (PlayerPrefs.HasKey("fullscreen"))
         {
@@ -25,14 +34,35 @@ public class PlayerSettingsManager : MonoBehaviour
 
     public void ChangeVolume()
     {
-        AudioListener.volume = volumeSlider.value;
-        PlayerPrefs.SetFloat("musicVolume", volumeSlider.value);
+        float volume = volumeSlider.value;
+        if (audioManager != null)
+        {
+            audioManager.SetMusicVolume(volume);
+        }
+        PlayerPrefs.SetFloat("musicVolume", volume);
     }
 
     private void LoadVolume()
     {
         volumeSlider.value = PlayerPrefs.GetFloat("musicVolume");
         ChangeVolume();
+    }
+
+    public void ChangeSFXVolume()
+    {
+        float sfxVolume = sfxVolumeSlider.value;
+        PlayerPrefs.SetFloat("sfxVolume", sfxVolume);
+        if (audioManager != null)
+        {
+            audioManager.SetSFXVolume(sfxVolume);
+        }
+        Debug.Log("SFX Volume: " + sfxVolume);
+    }
+
+    private void LoadSFXVolume()
+    {
+        sfxVolumeSlider.value = PlayerPrefs.GetFloat("sfxVolume");
+        ChangeSFXVolume();
     }
 
     public void onFullScreenToggle(bool isFullScreen)
