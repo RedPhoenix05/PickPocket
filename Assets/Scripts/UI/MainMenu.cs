@@ -6,26 +6,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject Menu_Main;
     [SerializeField] GameObject Menu_Level_Select;
     [SerializeField] GameObject Menu_Options;
-    //[SerializeField] GameObject Menu_LeaderBoard;
 
-    /*public void DisplayMainMenu ()
-    {
-        Menu_Main.SetActive(true);
-        Menu_Level_Select.SetActive(false);
-        Menu_Options.SetActive(false);
-    }
-    public void DisplayLevelSelect ()
-    {
-        Menu_Main.SetActive(false);
-        Menu_Level_Select.SetActive(true);
-        Menu_Options.SetActive(false);
-    }
-    public void DisplayOptions ()
-    {
-        Menu_Main.SetActive(false);
-        Menu_Level_Select.SetActive(false);
-        Menu_Options.SetActive(true);
-    }*/
     public void DisplayMenu(GameObject menuToShow)
     {
         GameObject[] menus = { Menu_Main, Menu_Level_Select, Menu_Options};
