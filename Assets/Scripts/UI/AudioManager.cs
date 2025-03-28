@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip cloths_rustle;
     public AudioClip steps;
 
+
     private void Start()
     {
         musicSource.clip = background;
