@@ -6,7 +6,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject Menu_Main;
     [SerializeField] GameObject Menu_Level_Select;
     [SerializeField] GameObject Menu_Options;
-    [SerializeField] GameObject Menu_LeaderBoard;
+    //[SerializeField] GameObject Menu_LeaderBoard;
 
     /*public void DisplayMainMenu ()
     {
@@ -28,7 +28,7 @@ public class MainMenu : MonoBehaviour
     }*/
     public void DisplayMenu(GameObject menuToShow)
     {
-        GameObject[] menus = { Menu_Main, Menu_Level_Select, Menu_Options, Menu_LeaderBoard };
+        GameObject[] menus = { Menu_Main, Menu_Level_Select, Menu_Options};
 
         foreach (GameObject menu in menus)
         {
