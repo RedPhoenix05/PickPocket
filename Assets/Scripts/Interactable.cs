@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(TextMeshPro))]
 public class Interactable : MonoBehaviour
@@ -17,6 +16,8 @@ public class Interactable : MonoBehaviour
         if (prompt)
         {
             valid = true;
+
+            prompt.enabled = false;
         }
     }
 
