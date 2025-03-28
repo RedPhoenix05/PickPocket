@@ -8,7 +8,11 @@ public class AudioManager : MonoBehaviour
 
     [Header("--------- Audio Clip ---------")]
     public AudioClip background;
-    public AudioClip coinCollect;
+    public AudioClip ambience;
+
+    public AudioClip click;
+    public AudioClip cloths_rustle;
+    public AudioClip steps;
 
     private void Start()
     {
@@ -17,9 +21,21 @@ public class AudioManager : MonoBehaviour
         musicSource.Play();
     }
 
-    public void onCoinCollect()
+    public void onMouseClick()
     {
-        SFXSource.clip = coinCollect;
+        SFXSource.clip = click;
+        SFXSource.Play();
+    }
+
+    public void onClothsRustle()
+    {
+        SFXSource.clip = cloths_rustle;
+        SFXSource.Play();
+    }
+
+    public void onSteps()
+    {
+        SFXSource.clip = steps;
         SFXSource.Play();
     }
 }

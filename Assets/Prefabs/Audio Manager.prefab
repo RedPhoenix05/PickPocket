@@ -49,7 +49,10 @@ MonoBehaviour:
   musicSource: {fileID: 7364425842219450582}
   SFXSource: {fileID: 8903739784192932143}
   background: {fileID: 0}
-  coinCollect: {fileID: 0}
+  ambience: {fileID: 0}
+  click: {fileID: 8300000, guid: bafb340e2912a644dac0c6ee5bbb1eee, type: 3}
+  cloths_rustle: {fileID: 8300000, guid: 7f6b561e183ffb84b8ab24446c236a6b, type: 3}
+  steps: {fileID: 8300000, guid: 848892ff1728d204982a3b40f682ea0e, type: 3}
 --- !u!1 &6850348004851076605
 GameObject:
   m_ObjectHideFlags: 0
