@@ -18,13 +18,14 @@ public class PlayerMovementController : MonoBehaviour
     public float baseSpeed = 1.0f;
     [SerializeField] float sneakModifier = 0.5f;
     [SerializeField] float sprintModifier = 2f;
+    [SerializeField] float gravity = -5f;
 
     CharacterController controller;
     Player player;
     ColliderEvent interactionCaster;
     bool valid = false;
 
-    List<Interactable> interactables;
+    List<Interactable> interactables = new();
     Interactable mainInteractable;
 
     private void Awake()
@@ -51,9 +52,6 @@ public class PlayerMovementController : MonoBehaviour
             // Get input vector
             Vector2 inputDirection = moveAction.action.ReadValue<Vector2>();
 
-            // Don't move if very little input provided
-            if (inputDirection.sqrMagnitude <= Mathf.Epsilon * Mathf.Epsilon) return;
-
             // Create movement vector from 2d
             Vector3 moveDirection = new(inputDirection.x, 0f, inputDirection.y);
 
@@ -61,9 +59,19 @@ public class PlayerMovementController : MonoBehaviour
             float speed = baseSpeed;
             if (sneakAction.action.IsPressed()) speed *= sneakModifier;
             else if (sprintAction.action.IsPressed()) speed *= sprintModifier;
-            
+
+            // Calculate horizontal movement
+            Vector3 horizontalFactor = speed * Time.fixedDeltaTime * moveDirection;
+
+            // Apply gravity
+            Vector3 gravityFactor = Vector3.zero;
+            if (!controller.isGrounded)
+            {
+                gravityFactor = -gravity * Time.fixedDeltaTime * Vector3.down;
+            }
+
             // Move character
-            controller.Move(speed * Time.fixedDeltaTime * moveDirection);
+            controller.Move(horizontalFactor + gravityFactor);
         }
     }
 
