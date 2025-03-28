@@ -50,14 +50,17 @@ public class MainMenu : MonoBehaviour
     }
     public void OnLevel_1()
     {
+        am.onMouseClick();
         SceneManager.LoadScene("level1");
     }
     public void OnLevel_2()
     {
+        am.onMouseClick();
         SceneManager.LoadScene("level2");
     }
     public void OnLevel_3()
     {
+        am.onMouseClick();
         SceneManager.LoadScene("level3");
     }
     public void OnBack()
