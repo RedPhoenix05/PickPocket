@@ -196,7 +196,7 @@ MonoBehaviour:
   sprintAction: {fileID: 7726966492401448739, guid: d9c697507bd2eac40b0a4fafde14301b, type: 3}
   interactAction: {fileID: 7945059489896031886, guid: d9c697507bd2eac40b0a4fafde14301b, type: 3}
   pauseAction: {fileID: 6385889232677487050, guid: d9c697507bd2eac40b0a4fafde14301b, type: 3}
-  baseSpeed: 1
+  baseSpeed: 5
   sneakModifier: 0.5
   sprintModifier: 2
 --- !u!1 &8258543727650919239
