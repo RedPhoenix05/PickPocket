@@ -35,13 +35,13 @@ public class AudioManager : MonoBehaviour
     public void SetMusicVolume(float volume)
     {
         musicSource.volume = volume;
-        Debug.Log("Music Volume: " + volume);
+        //Debug.Log("Music Volume: " + volume);
     }
 
     public void SetSFXVolume(float volume)
     {
         SFXSource.volume = volume;
-        Debug.Log("SFX Volume: " + volume);
+        //Debug.Log("SFX Volume: " + volume);
     }
 
     public void onMouseClick()
