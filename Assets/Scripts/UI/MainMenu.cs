@@ -56,7 +56,7 @@ public class MainMenu : MonoBehaviour
     public void OnLevel_2()
     {
         am.onMouseClick();
-        SceneManager.LoadScene("level2");
+        SceneManager.LoadScene("Jewelry Store");
     }
     public void OnLevel_3()
     {

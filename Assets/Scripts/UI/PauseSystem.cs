@@ -12,15 +12,15 @@ public class PauseSystem : MonoBehaviour
     [SerializeField] GameObject levelCompleteMenu;
     [SerializeField] GameObject pauseActive;
 
-    [SerializeField] GameObject live1;
-    [SerializeField] GameObject live2;
-    [SerializeField] GameObject live3;
+    //[SerializeField] GameObject live1;
+    //[SerializeField] GameObject live2;
+    //[SerializeField] GameObject live3;
 
-    [SerializeField] Text levelTimer;
-    [SerializeField] GameObject timerObject;
+    //[SerializeField] Text levelTimer;
+    //[SerializeField] GameObject timerObject;
 
-    [SerializeField] Text scoreText;
-    [SerializeField] Text timeText;
+    //[SerializeField] Text scoreText;
+    //[SerializeField] Text timeText;
 
     //private PlayerStats playerStats;
     //private LBoard lboard;
@@ -36,9 +36,9 @@ public class PauseSystem : MonoBehaviour
         //GameObject leaderboard = GameObject.Find("LeaderBoardManager");
         //lboard = leaderboard.GetComponent<LBoard>();
         //Debug.Log("Player Dead Status" + playerStats.getIsDead());
-        live1.SetActive(true);
-        live2.SetActive(true);
-        live3.SetActive(true);
+        //live1.SetActive(true);
+        //live2.SetActive(true);
+        //live3.SetActive(true);
     }
 
     public void PauseOrPlay()
@@ -58,7 +58,7 @@ public class PauseSystem : MonoBehaviour
         }
     }
 
-    public void TimerUpdate()
+    /*public void TimerUpdate()
     {
         elapsedTime += Time.deltaTime;
         int minutes = Mathf.FloorToInt(elapsedTime / 60);
@@ -66,7 +66,7 @@ public class PauseSystem : MonoBehaviour
         int milliseconds = Mathf.FloorToInt((elapsedTime * 100) % 100);
 
         levelTimer.text = string.Format("{0:00}:{1:00}.{2:00}", minutes, seconds, milliseconds);
-    }
+    }*/
 
     void Update() 
     {
@@ -83,10 +83,10 @@ public class PauseSystem : MonoBehaviour
             GameOverScreen();
             gameOverFirst = false;
         }*/
-        if ((isPaused || gameOverMenu || levelCompleteMenu) && Input.GetKeyDown(KeyCode.R))
+        /*if ((isPaused || gameOverMenu || levelCompleteMenu) && Input.GetKeyDown(KeyCode.R))
         {
             OnRestartButton();
-        }
+        }*/
 
         //UpdateLives();
         //TimerUpdate();
