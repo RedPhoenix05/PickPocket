@@ -62,7 +62,7 @@ public class PlayerMovementController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 forward = playerModel.position - lastPosition;
-        if (forward.magnitude > Mathf.Epsilon)
+        if (forward.sqrMagnitude > Mathf.Epsilon)
         {
             playerModel.forward = forward;
         }
