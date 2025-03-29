@@ -5,12 +5,14 @@ using UnityEngine.Events;
 [RequireComponent(typeof(TextMeshPro))]
 public class Interactable : MonoBehaviour
 {
-    public UnityEvent interactEvent;
+    public UnityEvent<bool> interactEvent;
     protected TextMeshPro prompt;
 
     protected bool valid = false;
     protected bool interacting = false;
     Transform mainCamera;
+
+    [HideInInspector] public bool canInteract = true;
 
     protected virtual void Awake()
     {
@@ -53,9 +55,22 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    public virtual void Interact()
+    public virtual void Interact(bool forceInteraction)
     {
-        interactEvent.Invoke();
-        Debug.Log("Interaction Event", this);
+        if (canInteract)
+        {
+            interactEvent.Invoke(forceInteraction);
+            Debug.Log("Interaction Event", this);
+        }
+    }
+
+    public void EnableInteraction(float time)
+    {
+        Invoke(nameof(EnableInteraction), time);
+    }
+
+    public virtual void EnableInteraction()
+    {
+        canInteract = true;
     }
 }
