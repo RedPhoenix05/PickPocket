@@ -12,7 +12,7 @@ public class Interactable : MonoBehaviour
     protected bool interacting = false;
     Transform mainCamera;
 
-    [HideInInspector] public bool canInteract = true;
+    public bool canInteract = true;
 
     protected virtual void Awake()
     {
@@ -57,7 +57,7 @@ public class Interactable : MonoBehaviour
 
     public virtual void Interact(bool forceInteraction)
     {
-        if (canInteract)
+        if (enabled && canInteract)
         {
             interactEvent.Invoke(forceInteraction);
             Debug.Log("Interaction Event", this);
