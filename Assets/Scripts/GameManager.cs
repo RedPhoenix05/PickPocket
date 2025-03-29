@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
         failScreen.SetActive(false);
         successScreen.SetActive(false);
         exitInteractable.interactEvent.AddListener(Exit);
-        exitInteractable.enabled = false;
+        exitInteractable.canInteract = false;
     }
 
     public void GameSuccess()
@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
         foreach (PickpocketMinigame task in tasks)
         {
             tasksDone &= task.success;
-            cash += task.cashValue;
+            if (task.success) cash += task.cashValue;
         }
 
         cashDisplay.text = "$" + cash.ToString();
@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
 
     public void EnableExit()
     {
-        exitInteractable.enabled = true;
+        exitInteractable.canInteract = true;
     }
 
     public void Exit(bool none)
