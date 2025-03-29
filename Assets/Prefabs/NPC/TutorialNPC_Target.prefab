@@ -237,7 +237,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PickpocketMinigame, Assembly-CSharp
+        m_MethodName: onPickPocketTrigger
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5415120449956278249
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationController: {fileID: 8681192921769839407}
   visionSource: {fileID: 6238877556373692206}
-  visionAngle: 45
+  visionAngle: 180
   visionDistance: 2
   interactable: {fileID: 6805687639846265100}
   minInteractionSuspicionDist: 1
@@ -320,8 +332,8 @@ MonoBehaviour:
   currentSuspicion: 0
   maxSuspicion: 20
   suspicionModifier: 1
-  calmDelay: 5
-  calmRate: 1
+  calmDelay: 10
+  calmRate: 0.5
   suspicionLocks:
   - 5
   - 10
