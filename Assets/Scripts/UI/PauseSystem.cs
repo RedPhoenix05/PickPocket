@@ -29,6 +29,8 @@ public class PauseSystem : MonoBehaviour
     private bool gameOverFirst = true;
     public float elapsedTime;
 
+    public AudioManager am;
+
     void Start()
     {
         GameObject player = GameObject.Find("Player");
@@ -75,6 +77,7 @@ public class PauseSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             //Debug.Log("Escape");
+            am.onMouseClick();
             PauseOrPlay();
         }
         /*if (playerStats.getIsDead() && gameOverFirst)
@@ -112,28 +115,32 @@ public class PauseSystem : MonoBehaviour
         }
     }*/
 
-    private void UpdateTimer()
+    /*private void UpdateTimer()
     {
 
-    }
+    }*/
 
     public void OnPauseButton () 
     {
         //Debug.Log("Escape");
+        am.onMouseClick();
         PauseOrPlay();
     }
     public void OnHomeButton () 
     {
+        am.onMouseClick();
         SceneManager.LoadScene("MainMenu");
         Time.timeScale = 1;
     }
     public void OnResumeButton ()
     {
+        am.onMouseClick();
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
     }
     public void OnRestartButton ()
     {
+        am.onMouseClick();
         Destroy(gameObject);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1;

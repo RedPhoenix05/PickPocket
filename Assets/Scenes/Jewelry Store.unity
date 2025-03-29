@@ -4921,6 +4921,17 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 186816168}
   m_Enabled: 1
+--- !u!114 &186816172 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2620219827160279036, guid: 841dad2d5b9366e4eadbb437a33dada4, type: 3}
+  m_PrefabInstance: {fileID: 548985487}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186816168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 489adaca5f644c541852392c570ed97f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &190012976
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13592,6 +13603,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8819727400407845539, guid: c7dbd93943e538f4d84d18846cb58ee2, type: 3}
+      propertyPath: am
+      value: 
+      objectReference: {fileID: 186816172}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

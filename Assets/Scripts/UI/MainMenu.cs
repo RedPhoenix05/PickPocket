@@ -24,7 +24,6 @@ public class MainMenu : MonoBehaviour
             menu.SetActive(menu == menuToShow);
         }
     }
-    
   
     public void OnPlayButton () 
     {
@@ -48,6 +47,7 @@ public class MainMenu : MonoBehaviour
             am.onMouseClick();
         }
     }
+
     public void OnLevel_1()
     {
         am.onMouseClick();
