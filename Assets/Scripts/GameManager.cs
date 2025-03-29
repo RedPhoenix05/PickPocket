@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -10,11 +11,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject failScreen;
     [SerializeField] GameObject successScreen;
     [SerializeField] List<PickpocketMinigame> tasks = new();
+    [SerializeField] Interactable exitInteractable;
+    [SerializeField] int cash = 0;
+    [SerializeField] TextMeshPro cashDisplay;
 
     private void Awake()
     {
         failScreen.SetActive(false);
         successScreen.SetActive(false);
+        exitInteractable.interactEvent.AddListener(Exit);
+        exitInteractable.enabled = false;
     }
 
     public void GameSuccess()
@@ -37,6 +43,7 @@ public class GameManager : MonoBehaviour
         {
             task.gameObject.SetActive(false);
         }
+        Debug.Log("Game Over: Failure");
     }
 
     public void WarnAll(float value)
@@ -50,16 +57,30 @@ public class GameManager : MonoBehaviour
     public void CheckGameOver()
     {
         Debug.Log("Task completed");
-        bool gameover = true;
+        bool tasksDone = true;
+        cash = 0;
         foreach (PickpocketMinigame task in tasks)
         {
-            gameover &= task.success;
+            tasksDone &= task.success;
+            cash += task.cashValue;
         }
 
+        cashDisplay.text = "$" + cash.ToString();
+
         // end game if all tasks done
-        if (gameover)
+        if (tasksDone)
         {
-            GameSuccess();
+            EnableExit();
         }
+    }
+
+    public void EnableExit()
+    {
+        exitInteractable.enabled = true;
+    }
+
+    public void Exit(bool none)
+    {
+        GameSuccess();
     }
 }
