@@ -28,6 +28,8 @@ public class PlayerMovementController : MonoBehaviour
     List<Interactable> interactables = new();
     Interactable mainInteractable;
 
+    [HideInInspector] public bool disableMovement = false;
+
     private void Awake()
     {
         // Get controller reference
@@ -82,38 +84,41 @@ public class PlayerMovementController : MonoBehaviour
         // Interaction
         if (mainInteractable && interactAction.action.WasPressedThisFrame())
         {
-            mainInteractable.Interact();
+            mainInteractable.Interact(false);
         }
     }
 
     private void UpdateMovement()
     {
-        // Get input vector
-        Vector2 inputDirection = moveAction.action.ReadValue<Vector2>();
-
-        // Create movement vector from 2d
-        Vector3 moveDirection = new(inputDirection.x, 0f, inputDirection.y);
-
-        // Calculate speed
-        float speed = baseSpeed;
-        if (sneakAction.action.IsPressed()) speed *= sneakModifier;
-        else if (sprintAction.action.IsPressed()) speed *= sprintModifier;
-
-        // Calculate horizontal movement
-        Vector3 horizontalFactor = speed * Time.deltaTime * moveDirection;
-        
-        // Convert global space to local space
-        horizontalFactor = transform.TransformDirection(horizontalFactor);
-
-        // Apply gravity
-        Vector3 gravityFactor = Vector3.zero;
-        if (!controller.isGrounded)
+        if (!disableMovement)
         {
-            gravityFactor = -gravity * Time.deltaTime * Vector3.down;
-        }
+            // Get input vector
+            Vector2 inputDirection = moveAction.action.ReadValue<Vector2>();
 
-        // Move character
-        controller.Move(horizontalFactor + gravityFactor);
+            // Create movement vector from 2d
+            Vector3 moveDirection = new(inputDirection.x, 0f, inputDirection.y);
+
+            // Calculate speed
+            float speed = baseSpeed;
+            if (sneakAction.action.IsPressed()) speed *= sneakModifier;
+            else if (sprintAction.action.IsPressed()) speed *= sprintModifier;
+
+            // Calculate horizontal movement
+            Vector3 horizontalFactor = speed * Time.deltaTime * moveDirection;
+
+            // Convert global space to local space
+            horizontalFactor = transform.TransformDirection(horizontalFactor);
+
+            // Apply gravity
+            Vector3 gravityFactor = Vector3.zero;
+            if (!controller.isGrounded)
+            {
+                gravityFactor = -gravity * Time.deltaTime * Vector3.down;
+            }
+
+            // Move character
+            controller.Move(horizontalFactor + gravityFactor);
+        }
     }
 
     private void Cast_TriggerEnter(Collider collider)
