@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
         successScreen.SetActive(false);
         exitInteractable.interactEvent.AddListener(Exit);
         exitInteractable.canInteract = false;
+        Time.timeScale = 1;
     }
 
     public void GameSuccess()
