@@ -51,10 +51,13 @@ public class AIController : MonoBehaviour
         player = FindFirstObjectByType<Player>();
         gameManager = FindFirstObjectByType<GameManager>();
 
-        if (player && gameManager && animationController && visionSource && interactable && suspicionDisplay)
+        if (player && gameManager && animationController && visionSource && suspicionDisplay)
         {
             valid = true;
+        }
 
+        if (interactable)
+        {
             interactable.interactEvent.AddListener(Interact);
         }
 
