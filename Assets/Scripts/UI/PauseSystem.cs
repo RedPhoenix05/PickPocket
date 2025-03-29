@@ -29,18 +29,16 @@ public class PauseSystem : MonoBehaviour
     private bool gameOverFirst = true;
     public float elapsedTime;
 
+    public GameObject failureObject;
+    public GameObject successObject;
+
     public AudioManager am;
 
     void Start()
     {
         GameObject player = GameObject.Find("Player");
-        //playerStats = player.GetComponent<PlayerStats>();
-        //GameObject leaderboard = GameObject.Find("LeaderBoardManager");
-        //lboard = leaderboard.GetComponent<LBoard>();
-        //Debug.Log("Player Dead Status" + playerStats.getIsDead());
-        //live1.SetActive(true);
-        //live2.SetActive(true);
-        //live3.SetActive(true);
+        //failureObject = GameObject.Find("Cube");
+        //successObject = GameObject.Find("Cube (1)");
     }
 
     public void PauseOrPlay()
@@ -60,16 +58,6 @@ public class PauseSystem : MonoBehaviour
         }
     }
 
-    /*public void TimerUpdate()
-    {
-        elapsedTime += Time.deltaTime;
-        int minutes = Mathf.FloorToInt(elapsedTime / 60);
-        int seconds = Mathf.FloorToInt(elapsedTime % 60);
-        int milliseconds = Mathf.FloorToInt((elapsedTime * 100) % 100);
-
-        levelTimer.text = string.Format("{0:00}:{1:00}.{2:00}", minutes, seconds, milliseconds);
-    }*/
-
     void Update() 
     {
         //Debug.Log("Current Game Over Status:" + playerStats.getIsDead());
@@ -80,45 +68,19 @@ public class PauseSystem : MonoBehaviour
             am.onMouseClick();
             PauseOrPlay();
         }
-        /*if (playerStats.getIsDead() && gameOverFirst)
+        if (failureObject.activeInHierarchy)
         {
-            Debug.Log("Game over first");
+            //gameFailed = true;
             GameOverScreen();
-            gameOverFirst = false;
-        }*/
-        /*if ((isPaused || gameOverMenu || levelCompleteMenu) && Input.GetKeyDown(KeyCode.R))
-        {
-            OnRestartButton();
-        }*/
-
-        //UpdateLives();
-        //TimerUpdate();
-        
-    }
-
-    /*private void UpdateLives()
-    {
-        switch (playerStats.getLives())
-        {
-            case 1:
-                live2.SetActive(false);
-                break;
-
-            case 2:
-                live2.SetActive(true);
-                live3.SetActive(false);
-                break;
-            case 3:
-                live2.SetActive(true);
-                live3.SetActive(true);
-                break;
         }
-    }*/
 
-    /*private void UpdateTimer()
-    {
+        if (successObject.activeInHierarchy)
+        {
+            //gameSuccess = true;
+            LevelCompleteScreen();
+        }
 
-    }*/
+    }
 
     public void OnPauseButton () 
     {
@@ -149,14 +111,14 @@ public class PauseSystem : MonoBehaviour
     {
         LevelCompleteScreen();
     }*/
-    /*public void OnNextLevelButton()
+    public void OnNextLevelButton()
     {
         //load next level
         string currentScene = SceneManager.GetActiveScene().name;
         int levelNumber;
-        if (int.TryParse(currentScene.Replace("level", ""), out levelNumber))
+        if (int.TryParse(currentScene.Replace("Level", ""), out levelNumber))
         {
-            string nextSceneName = "level" + (levelNumber + 1); // Construct the next level name
+            string nextSceneName = "Level" + (levelNumber + 1); // Construct the next level name
             Debug.Log(nextSceneName);
             // Check if next scene exists before loading
             if (Application.CanStreamedLevelBeLoaded(nextSceneName))
@@ -175,16 +137,23 @@ public class PauseSystem : MonoBehaviour
 
 
         Time.timeScale = 1;
-    }*/
+    }
 
-    /*public void GameOverScreen()
+    public void GameOverScreen()
     {
         Time.timeScale = 0;
         gameOverMenu.SetActive(true);
         levelCompleteMenu.SetActive(false);
         pauseActive.SetActive(false);
-    }*/
+    }
 
+    public void LevelCompleteScreen()
+    {
+        Time.timeScale = 0;
+        gameOverMenu.SetActive(false);
+        levelCompleteMenu.SetActive(true);
+        pauseActive.SetActive(false);
+    }
     /*public void LevelCompleteScreen()
     {
         GameObject[] textOverlays = GameObject.FindGameObjectsWithTag("TextOverlay");
