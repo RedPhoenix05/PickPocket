@@ -18,6 +18,7 @@ public class PickpocketMinigame : MonoBehaviour
     [SerializeField] float moveForce = 10f;
     [SerializeField] float hitPenalty = 30f;
     [SerializeField] float colorFlash = 0.25f;
+    public int cashValue = 100;
 
     Vector3 walletStart = Vector3.zero;
     [HideInInspector] public bool success = false;
@@ -85,6 +86,11 @@ public class PickpocketMinigame : MonoBehaviour
         game.SetActive(false);
         success = true;
         gameManager.CheckGameOver();
+        walletRigidbody.isKinematic = true;
+        walletRigidbody.transform.localPosition = walletStart;
+        game.SetActive(false);
+
+        playerController.disableMovement = false;
     }
 
     public void GameEnd()
