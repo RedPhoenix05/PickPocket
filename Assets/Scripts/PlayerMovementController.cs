@@ -125,7 +125,10 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (collider.TryGetComponent(out Interactable interactable))
         {
-            interactables.Add(interactable);
+            if (interactable.canInteract)
+            {
+                interactables.Add(interactable);
+            }
         }
     }
 
