@@ -101,6 +101,9 @@ public class PlayerMovementController : MonoBehaviour
 
         // Calculate horizontal movement
         Vector3 horizontalFactor = speed * Time.deltaTime * moveDirection;
+        
+        // Convert global space to local space
+        horizontalFactor = transform.TransformDirection(horizontalFactor);
 
         // Apply gravity
         Vector3 gravityFactor = Vector3.zero;
