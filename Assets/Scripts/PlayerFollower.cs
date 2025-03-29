@@ -32,6 +32,14 @@ public class PlayerFollower : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (valid)
+        {
+            transform.localEulerAngles = new(0f, playerTransform.localEulerAngles.y, 0f);
+        }
+    }
+
     private void FixedUpdate()
     {
         if (valid)
