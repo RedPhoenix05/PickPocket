@@ -12,15 +12,15 @@ public class PauseSystem : MonoBehaviour
     [SerializeField] GameObject levelCompleteMenu;
     [SerializeField] GameObject pauseActive;
 
-    [SerializeField] GameObject live1;
-    [SerializeField] GameObject live2;
-    [SerializeField] GameObject live3;
+    //[SerializeField] GameObject live1;
+    //[SerializeField] GameObject live2;
+    //[SerializeField] GameObject live3;
 
-    [SerializeField] Text levelTimer;
-    [SerializeField] GameObject timerObject;
+    //[SerializeField] Text levelTimer;
+    //[SerializeField] GameObject timerObject;
 
-    [SerializeField] Text scoreText;
-    [SerializeField] Text timeText;
+    //[SerializeField] Text scoreText;
+    //[SerializeField] Text timeText;
 
     //private PlayerStats playerStats;
     //private LBoard lboard;
@@ -29,6 +29,8 @@ public class PauseSystem : MonoBehaviour
     private bool gameOverFirst = true;
     public float elapsedTime;
 
+    public AudioManager am;
+
     void Start()
     {
         GameObject player = GameObject.Find("Player");
@@ -36,9 +38,9 @@ public class PauseSystem : MonoBehaviour
         //GameObject leaderboard = GameObject.Find("LeaderBoardManager");
         //lboard = leaderboard.GetComponent<LBoard>();
         //Debug.Log("Player Dead Status" + playerStats.getIsDead());
-        live1.SetActive(true);
-        live2.SetActive(true);
-        live3.SetActive(true);
+        //live1.SetActive(true);
+        //live2.SetActive(true);
+        //live3.SetActive(true);
     }
 
     public void PauseOrPlay()
@@ -58,7 +60,7 @@ public class PauseSystem : MonoBehaviour
         }
     }
 
-    public void TimerUpdate()
+    /*public void TimerUpdate()
     {
         elapsedTime += Time.deltaTime;
         int minutes = Mathf.FloorToInt(elapsedTime / 60);
@@ -66,7 +68,7 @@ public class PauseSystem : MonoBehaviour
         int milliseconds = Mathf.FloorToInt((elapsedTime * 100) % 100);
 
         levelTimer.text = string.Format("{0:00}:{1:00}.{2:00}", minutes, seconds, milliseconds);
-    }
+    }*/
 
     void Update() 
     {
@@ -75,6 +77,7 @@ public class PauseSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             //Debug.Log("Escape");
+            am.onMouseClick();
             PauseOrPlay();
         }
         /*if (playerStats.getIsDead() && gameOverFirst)
@@ -83,10 +86,10 @@ public class PauseSystem : MonoBehaviour
             GameOverScreen();
             gameOverFirst = false;
         }*/
-        if ((isPaused || gameOverMenu || levelCompleteMenu) && Input.GetKeyDown(KeyCode.R))
+        /*if ((isPaused || gameOverMenu || levelCompleteMenu) && Input.GetKeyDown(KeyCode.R))
         {
             OnRestartButton();
-        }
+        }*/
 
         //UpdateLives();
         //TimerUpdate();
@@ -112,28 +115,32 @@ public class PauseSystem : MonoBehaviour
         }
     }*/
 
-    private void UpdateTimer()
+    /*private void UpdateTimer()
     {
 
-    }
+    }*/
 
     public void OnPauseButton () 
     {
         //Debug.Log("Escape");
+        am.onMouseClick();
         PauseOrPlay();
     }
     public void OnHomeButton () 
     {
+        am.onMouseClick();
         SceneManager.LoadScene("MainMenu");
         Time.timeScale = 1;
     }
     public void OnResumeButton ()
     {
+        am.onMouseClick();
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
     }
     public void OnRestartButton ()
     {
+        am.onMouseClick();
         Destroy(gameObject);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1;
