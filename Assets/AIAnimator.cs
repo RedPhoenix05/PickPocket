@@ -1,15 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-
-public enum AIState
-{
-    idle = 0,
-    wander = 1,
-    walk = 2,
-    chase = 3
-}
 
 [RequireComponent(typeof(Animator))]
 public class AIAnimator : MonoBehaviour
@@ -66,21 +57,21 @@ public class AIAnimator : MonoBehaviour
     {
         if (valid)
         {
-            // Continuously play a random animation based on the state
+            // Don't run if animation active
             if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f && !animator.IsInTransition(0))
             {
-                // If we have completed the required number of repetitions, pick a new animation
                 if (currentRepetitions >= targetRepetitions)
                 {
-                    PlayRandomAnimation(selectedClips);  // Change to the desired animation category
+                    // Play animation
+                    PlayRandomAnimation(selectedClips);
                     currentRepetitions = 0;
 
-                    // Set random
+                    // Set random repetition amount within range
                     targetRepetitions = Random.Range(minRepetitions, maxRepetitions + 1);
                 }
                 else
                 {
-                    // Keep repeating the current animation
+                    // Repeat animation
                     currentRepetitions++;
                     animator.Play(currentState, 0, 0f);
                 }
@@ -90,6 +81,7 @@ public class AIAnimator : MonoBehaviour
 
     public virtual void SetAnimation(AIState state)
     {
+        // Set animation properties based on state
         if (valid)
         {
             switch (state)
@@ -112,6 +104,7 @@ public class AIAnimator : MonoBehaviour
                     break;
             }
 
+            // Fix if bad
             if (maxRepetitions < minRepetitions) maxRepetitions = minRepetitions;
 
             // Play random
@@ -119,17 +112,15 @@ public class AIAnimator : MonoBehaviour
         }
     }
 
-    // Function to play a random animation from a specific category
     void PlayRandomAnimation(List<AnimationClip> clips)
     {
         if (valid)
         {
+            // Random clip
             selectedClip = clips[Random.Range(0, clips.Count)];
-
-            // Set the current state to the name of the selected animation (or category)
             currentState = selectedClip.name;
 
-            // Crossfade to the selected animation clip
+            // Crossfade to selected clip
             animator.CrossFade(selectedClip.name, fadeTime);
         }
     }
