@@ -216,8 +216,9 @@ MonoBehaviour:
   walletCollider: {fileID: 645136058737883795}
   walletRenderer: {fileID: 7133867993824955701}
   moveForce: 100
-  hitPenalty: 10
+  hitPenalty: 5
   colorFlash: 0.25
+  cashValue: 100
   success: 0
 --- !u!68 &1179916557162624081
 EdgeCollider2D:
@@ -361,11 +362,11 @@ Transform:
   m_GameObject: {fileID: 4645226610171763807}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.18632038, y: 0.32755592, z: -2}
+  m_LocalPosition: {x: 0, y: 0, z: -1.9687666}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1295541362773520302}
+  m_Father: {fileID: 8825918885664446849}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &4163317790924191803
 Camera:
@@ -491,7 +492,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6358800235733384020}
   - {fileID: 6594165176746854140}
   - {fileID: 2630012422835243985}
   m_Father: {fileID: 3745462342111030205}
@@ -610,5 +610,6 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3745462342111030205}
+  - {fileID: 6358800235733384020}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
