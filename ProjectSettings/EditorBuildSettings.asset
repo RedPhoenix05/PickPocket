@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 010246e08ba495b4eb48568a1b8da40a
   - enabled: 1
-    path: Assets/Scenes/Jewelry Store.unity
+    path: Assets/Scenes/Level1.unity
     guid: 47787aa07fc09d64dba458eaf344ff2a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: d9c697507bd2eac40b0a4fafde14301b, type: 3}
