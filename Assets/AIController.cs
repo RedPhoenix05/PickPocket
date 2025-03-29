@@ -39,6 +39,7 @@ public class AIController : MonoBehaviour
     [HideInInspector] public UnityEvent<float> alertEvent;
     [HideInInspector] public UnityEvent<float> warnEvent;
 
+    protected GameManager gameManager;
     protected Player player;
     bool calmCooldown = false;
     float minSuspicion = 0f;
@@ -48,8 +49,9 @@ public class AIController : MonoBehaviour
     protected virtual void Awake()
     {
         player = FindFirstObjectByType<Player>();
+        gameManager = FindFirstObjectByType<GameManager>();
 
-        if (player && animationController && visionSource && interactable && suspicionDisplay)
+        if (player && gameManager && animationController && visionSource && interactable && suspicionDisplay)
         {
             valid = true;
 
@@ -114,6 +116,8 @@ public class AIController : MonoBehaviour
     {
         calmCooldown = true;
         alertEvent.Invoke(value);
+
+        gameManager.GameFail();
     }
 
     private void UpdateMinSuspicion()
@@ -152,10 +156,10 @@ public class AIController : MonoBehaviour
     }
 
 
-    protected virtual void Interact()
+    protected virtual void Interact(bool forceVisible = false)
     {
         // increase suspicion if interaction done in vision
-        if (PlayerVisionCast())
+        if (forceVisible || PlayerVisionCast())
         {
             float playerDistSqr = Vector3.SqrMagnitude(player.visionCheck.position - visionSource.position);
             float minInteractionSuspicionDistSqr = minInteractionSuspicionDist * minInteractionSuspicionDist;
