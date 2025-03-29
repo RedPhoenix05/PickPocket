@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4097059850544477969, guid: d731443d70977ae4ab2324ebc57a20be, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6480525460661258831, guid: d731443d70977ae4ab2324ebc57a20be, type: 3}
       propertyPath: m_Name
       value: PickPocket

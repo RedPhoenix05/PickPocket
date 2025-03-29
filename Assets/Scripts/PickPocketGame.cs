@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class PickpocketMinigame : MonoBehaviour
 {
+    [SerializeField] GameObject game;
     public GameObject miniGame;
     public GameObject wallet;
     public Text feedbackText;
@@ -26,6 +28,10 @@ public class PickpocketMinigame : MonoBehaviour
         walletRb.isKinematic = true;
     }
 
+    public void onPickPocketTrigger()
+    {
+        game.SetActive(true);
+    }    
     void FixedUpdate()
     {
         if (gameFailed || gameSuccess) return;
