@@ -86,6 +86,8 @@ public class AIController : MonoBehaviour
     {
         if (valid)
         {
+            UpdateMinSuspicion();
+
             // AI is aware of the player
             if (currentSuspicion >= maxSuspicion)
             {
