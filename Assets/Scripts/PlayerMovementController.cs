@@ -20,6 +20,16 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] float sprintModifier = 2f;
     [SerializeField] float gravity = -5f;
 
+    [Space, Header("Animation")]
+    [SerializeField] Transform playerModel;
+    [SerializeField] Animator animator;
+    [SerializeField] AnimationClip idleAnimation;
+    [SerializeField] AnimationClip walkingAnimation;
+    [SerializeField] AnimationClip sneakingAnimation;
+    [SerializeField] AnimationClip runningAnimation;
+
+    Vector3 lastPosition;
+
     CharacterController controller;
     Player player;
     ColliderEvent interactionCaster;
@@ -45,6 +55,18 @@ public class PlayerMovementController : MonoBehaviour
             interactionCaster.onTriggerEnter.AddListener(Cast_TriggerEnter);
             interactionCaster.onTriggerExit.AddListener(Cast_TriggerExit);
         }
+
+        lastPosition = playerModel.position;
+    }
+
+    private void FixedUpdate()
+    {
+        Vector3 forward = playerModel.position - lastPosition;
+        if (forward.magnitude > Mathf.Epsilon)
+        {
+            playerModel.forward = forward;
+        }
+        lastPosition = playerModel.position;
     }
 
     private void Update() // Handles other input
@@ -94,6 +116,38 @@ public class PlayerMovementController : MonoBehaviour
         {
             // Get input vector
             Vector2 inputDirection = moveAction.action.ReadValue<Vector2>();
+
+            if (inputDirection.sqrMagnitude < Mathf.Epsilon)
+            {
+                if (!animator.GetCurrentAnimatorStateInfo(0).IsName(idleAnimation.name))
+                {
+                    animator.Play(idleAnimation.name, 0, 0f);
+                }
+            }
+            else
+            {
+                if (sprintAction.action.IsPressed())
+                {
+                    if (!animator.GetCurrentAnimatorStateInfo(0).IsName(runningAnimation.name))
+                    {
+                        animator.Play(runningAnimation.name, 0, 0f);
+                    }
+                }
+                else if (sneakAction.action.IsPressed())
+                {
+                    if (!animator.GetCurrentAnimatorStateInfo(0).IsName(sneakingAnimation.name))
+                    {
+                        animator.Play(sneakingAnimation.name, 0, 0f);
+                    }
+                }
+                else
+                {
+                    if (!animator.GetCurrentAnimatorStateInfo(0).IsName(walkingAnimation.name))
+                    {
+                        animator.Play(walkingAnimation.name, 0, 0f);
+                    }
+                }
+            }
 
             // Create movement vector from 2d
             Vector3 moveDirection = new(inputDirection.x, 0f, inputDirection.y);
