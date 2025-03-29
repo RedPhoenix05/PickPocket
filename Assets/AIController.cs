@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.Events;
@@ -21,7 +22,14 @@ public class AIController : MonoBehaviour
     [SerializeField, Range(0f, 180f)] protected float visionAngle = 90f;
     [SerializeField, Min(0f)] protected float visionDistance = 5f;
 
+    [Space, Header("Interaction")]
+    [SerializeField] protected Interactable interactable;
+    [SerializeField] protected float minInteractionSuspicionDist = 1f;
+    [SerializeField] protected float interactionSuspicionMin = 5f; // suspicion from seen interaction at max distance
+    [SerializeField] protected float interactionSuspicionMax = 20f; // suspicion from seen interaction at min distance
+
     [Space, Header("Suspicion")]
+    [SerializeField] protected TextMeshPro suspicionDisplay;
     [SerializeField, Min(0f)] protected float currentSuspicion = 0f;
     [SerializeField, Min(0f)] protected float maxSuspicion = 20f;
     [SerializeField, Min(1f)] protected float suspicionModifier = 1f;
@@ -41,9 +49,11 @@ public class AIController : MonoBehaviour
     {
         player = FindFirstObjectByType<Player>();
 
-        if (player && animationController && visionSource)
+        if (player && animationController && visionSource && interactable && suspicionDisplay)
         {
             valid = true;
+
+            interactable.interactEvent.AddListener(Interact);
         }
 
         minSuspicion = currentSuspicion;
@@ -61,6 +71,17 @@ public class AIController : MonoBehaviour
         }
     }
 
+    protected virtual void Update()
+    {
+        if (valid)
+        {
+            // Update suspicion level display
+            float suspicionLevel = Mathf.Clamp01(currentSuspicion / maxSuspicion);
+            suspicionDisplay.text = ((int)(suspicionLevel * 100)).ToString() + "%";
+            suspicionDisplay.color = Color.Lerp(Color.green, Color.red, suspicionLevel);
+        }
+    }
+
     protected virtual void FixedUpdate()
     {
         if (valid)
@@ -75,12 +96,6 @@ public class AIController : MonoBehaviour
             if (!calmCooldown)
             {
                 CalmDown(calmRate * Time.fixedDeltaTime);
-            }
-
-            // Check if player in vision
-            if (PlayerVisionCast())
-            {
-                Debug.Log("Player in vision", this);
             }
         }
     }
@@ -132,5 +147,21 @@ public class AIController : MonoBehaviour
 
         // Check if player inside valid angle;
         return dotProduct >= minDotProduct;
+    }
+
+
+    protected virtual void Interact()
+    {
+        // increase suspicion if interaction done in vision
+        if (PlayerVisionCast())
+        {
+            float playerDistSqr = Vector3.SqrMagnitude(player.visionCheck.position - visionSource.position);
+            float minInteractionSuspicionDistSqr = minInteractionSuspicionDist * minInteractionSuspicionDist;
+            float visionDistanceSqr = visionDistance * visionDistance;
+            playerDistSqr = Mathf.Clamp(playerDistSqr, minInteractionSuspicionDistSqr, visionDistanceSqr);
+            float value = Mathf.Lerp(interactionSuspicionMax, interactionSuspicionMin, playerDistSqr / visionDistanceSqr);
+
+            Warn(value);
+        }
     }
 }
