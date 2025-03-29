@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     public void GameSuccess()
     {
-        failScreen.SetActive(true);
+        successScreen.SetActive(true);
         player.playerController.disableMovement = true;
         Time.timeScale = 0f;
         foreach (var task in tasks)

@@ -116,9 +116,9 @@ public class PauseSystem : MonoBehaviour
         //load next level
         string currentScene = SceneManager.GetActiveScene().name;
         int levelNumber;
-        if (int.TryParse(currentScene.Replace("level", ""), out levelNumber))
+        if (int.TryParse(currentScene.Replace("Level", ""), out levelNumber))
         {
-            string nextSceneName = "level" + (levelNumber + 1); // Construct the next level name
+            string nextSceneName = "Level" + (levelNumber + 1); // Construct the next level name
             Debug.Log(nextSceneName);
             // Check if next scene exists before loading
             if (Application.CanStreamedLevelBeLoaded(nextSceneName))
