@@ -2688,13 +2688,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1278905261040267112, guid: 963a28ef2acd5c24eb351e0c32542f38, type: 3}
+      propertyPath: m_Cameras.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1278905261040267112, guid: 963a28ef2acd5c24eb351e0c32542f38, type: 3}
       propertyPath: m_Cameras.Array.data[0]
       value: 
-      objectReference: {fileID: 1150744918953252978}
+      objectReference: {fileID: 1836018760}
     - target: {fileID: 1278905261040267112, guid: 963a28ef2acd5c24eb351e0c32542f38, type: 3}
       propertyPath: m_Cameras.Array.data[1]
       value: 
-      objectReference: {fileID: 1836018760}
+      objectReference: {fileID: 1150744918953252978}
     - target: {fileID: 4993676558015516899, guid: 963a28ef2acd5c24eb351e0c32542f38, type: 3}
       propertyPath: playerTransform
       value: 
@@ -2747,9 +2751,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4244437461494696530, guid: 963a28ef2acd5c24eb351e0c32542f38, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 6808367326206534314, guid: 963a28ef2acd5c24eb351e0c32542f38, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
