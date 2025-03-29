@@ -117,7 +117,6 @@ GameObject:
   - component: {fileID: 6930483382303804864}
   - component: {fileID: 8639731670849193324}
   - component: {fileID: 2273628458163005748}
-  - component: {fileID: 4026985021278703088}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -197,18 +196,10 @@ MonoBehaviour:
   sprintAction: {fileID: 7726966492401448739, guid: d9c697507bd2eac40b0a4fafde14301b, type: 3}
   interactAction: {fileID: 7945059489896031886, guid: d9c697507bd2eac40b0a4fafde14301b, type: 3}
   pauseAction: {fileID: 6385889232677487050, guid: d9c697507bd2eac40b0a4fafde14301b, type: 3}
-  baseSpeed: 5
+  baseSpeed: 2.5
   sneakModifier: 0.5
   sprintModifier: 2
   gravity: -5
---- !u!81 &4026985021278703088
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6908649179265904657}
-  m_Enabled: 1
 --- !u!1 &8258543727650919239
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +252,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.5
+  m_Radius: 1.25
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5705047033421406589
 MonoBehaviour:
