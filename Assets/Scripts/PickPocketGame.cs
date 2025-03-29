@@ -32,9 +32,8 @@ public class PickpocketMinigame : MonoBehaviour
     }
 
     // Trigger for successful pickpocketing
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Trigger");
         if (game.activeSelf && other == walletCollider)
         {
             GameSuccess();
