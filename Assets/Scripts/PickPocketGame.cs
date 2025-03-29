@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class PickpocketMinigame : MonoBehaviour
 {
-    public GameObject pants;
+    public GameObject miniGame;
     public GameObject wallet;
     public Text feedbackText;
     public Color safeColor = Color.white;
@@ -51,7 +51,7 @@ public class PickpocketMinigame : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject == pants)
+        if (collision.gameObject == wallet)
         {
             mistakes++;
             walletRenderer.color = dangerColor;
@@ -68,7 +68,7 @@ public class PickpocketMinigame : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject == pants)
+        if (collision.gameObject == wallet)
         {
             walletRenderer.color = safeColor;
             //buzzSound.Stop();
@@ -77,7 +77,7 @@ public class PickpocketMinigame : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject == pants)
+        if (other.gameObject == wallet)
         {
             gameSuccess = true;
             //feedbackText.text = "Success! You got the wallet!";
