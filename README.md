@@ -16,6 +16,6 @@
 # Contributors
 - RedPhoenix05 (Gameplay)
 - tntcastle (UI)
-- cjonascross (Asset gathering)
+- cjonascross (Asset management)
 
 This game was made for the IEEE Southeast Conference 2025 Region 3 Software Competition. (1st place prize winner!)
